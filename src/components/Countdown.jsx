@@ -34,7 +34,7 @@ const CountDown = () => {
   }, [targetDate]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-purple-600 text-white">
       <h1 className="text-4xl font-bold mb-4">My Birthday</h1>
       {timeLeft.message ? (
         <p className="text-2xl">{timeLeft.message}</p>

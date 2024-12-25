@@ -1,6 +1,6 @@
-import { useDispatch } from 'react-redux';
-import { toggleTaskStatus, editTask } from '../redux/todoSlice';
-import { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { toggleTaskStatus, editTask, deleteTask } from "../redux/todoSlice";
+import { useState } from "react";
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();
@@ -24,7 +24,9 @@ const Task = ({ task }) => {
           />
         ) : (
           <span
-            className={`text-lg ${task.isDone ? 'line-through text-gray-500' : 'text-black'}`}
+            className={`text-lg ${
+              task.isDone ? "line-through text-gray-500" : "text-black"
+            }`}
           >
             {task.description}
           </span>
@@ -36,11 +38,11 @@ const Task = ({ task }) => {
           onClick={() => dispatch(toggleTaskStatus(task.id))}
           className={`py-1 px-3 rounded-md ${
             task.isDone
-              ? 'bg-gray-300 text-gray-600 hover:bg-gray-400'
-              : 'bg-purple-600 text-white hover:bg-purple-700'
+              ? "bg-gray-300 text-gray-600 hover:bg-gray-400"
+              : "bg-purple-600 text-white hover:bg-purple-700"
           }`}
         >
-          {task.isDone ? 'Undo' : 'Complete'}
+          {task.isDone ? "Undo" : "Complete"}
         </button>
 
         {editMode ? (
@@ -58,6 +60,17 @@ const Task = ({ task }) => {
             Edit
           </button>
         )}
+        {/* Delete Button */}
+        <button
+          onClick={() => {
+            if (window.confirm("Are you sure you want to delete this task?")) {
+              dispatch(deleteTask(task.id));
+            }
+          }}
+          className="bg-red-600 text-white py-1 px-3 rounded-md hover:bg-red-700"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

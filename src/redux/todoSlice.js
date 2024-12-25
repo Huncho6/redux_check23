@@ -28,8 +28,12 @@ const todoSlice = createSlice({
         task.description = description;
       }
     },
+
+    deleteTask: (state, action) => {
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+    },
   },
 });
 
-export const { addTask, toggleTaskStatus, editTask } = todoSlice.actions;
+export const { addTask, toggleTaskStatus, editTask, deleteTask  } = todoSlice.actions;
 export default todoSlice.reducer;
